@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FlappyVy</string>
+    <string name="title_activity_game">GameActivity</string>
+    <string name="left_column">Left Column</string>
+    <string name="right_column">Right Column</string>
+    <string name="avatar_desc">Avatar Description</string>
+</resources>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".MainActivity">
+
+    <!-- Nút Info -->
+    <Button
+        android:id="@+id/infoBtn"
+        android:text="Info"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:textSize="15dp"
+        android:background="@drawable/rounded_button"
+        android:textColor="@android:color/white"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="16dp" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_height="68dp"
+            android:layout_width="match_parent"
+            android:src="@drawable/title" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:src="@drawable/bird_main"
+            android:layout_marginTop="30dp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/playBtn"
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:src="@drawable/play"
+            android:layout_marginTop="30dp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</RelativeLayout>

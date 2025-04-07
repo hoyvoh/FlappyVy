@@ -1,0 +1,444 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="0dp"
+    android:background="#F0F0F0">
+    <!--
+    Checklist
+
+    Right side:
+    + Avatar (Image place holder)
+    + Contact (Bullet points)
+    + Education (degree type(bold) year major school)
+    + Skills
+    ++ Subskills
+
+    Left side:
+    + Name
+    + Job Title
+    + About me (title and content)
+    + Experience
+    -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Row 1: Two Columns -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:padding="0dp">
+
+            <!-- Left Column (White Background) -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.9"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:background="#2E2E38">
+                <View
+                    android:id="@+id/dividerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:paddingTop="10dp"
+                    android:layout_marginVertical="1dp"/>
+
+                <com.example.flappyvy.CircleImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/avatar"
+                    android:background="@drawable/circle_mask"
+                    android:contentDescription="@string/avatar_desc"/>
+                <View
+                    android:id="@+id/divider2View"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:paddingTop="20dp"
+                    android:layout_marginVertical="1dp"/>
+                <View
+                    android:id="@+id/divider3View"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/white"
+                    android:paddingTop="10dp"
+                    android:layout_marginVertical="1dp"/>
+
+                <!-- Contact -->
+                <TextView
+                    android:id="@+id/ContactHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="\nContact"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <!-- Phone Icon -->
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@android:drawable/ic_menu_call"
+                        android:layout_marginEnd="4dp"
+                        app:tint="@android:color/white" />
+
+                    <!-- Phone Number -->
+                    <TextView
+                        android:id="@+id/PhoneView"
+                        android:layout_width="121dp"
+                        android:layout_height="wrap_content"
+                        android:text="123-456-7890"
+                        android:textColor="@android:color/white"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <!-- Phone Icon -->
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@android:drawable/ic_menu_send"
+                        android:layout_marginEnd="4dp"
+                        app:tint="@android:color/white" />
+
+                    <!-- Phone Number -->
+                    <TextView
+                        android:id="@+id/EmailView"
+                        android:layout_width="121dp"
+                        android:layout_height="wrap_content"
+                        android:text="hntvy23@gmail.com"
+                        android:textColor="@android:color/white"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <!-- Linkedin Icon -->
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/ic_linkedin"
+                        android:layout_marginEnd="4dp"
+                        app:tint="@android:color/white" />
+
+                    <!-- Linkedin Text -->
+                    <TextView
+                        android:id="@+id/LinkedinView"
+                        android:layout_width="121dp"
+                        android:layout_height="wrap_content"
+                        android:text="hntvy"
+                        android:textColor="@android:color/white"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <!-- Linkedin Icon -->
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/ic_github"
+                        android:layout_marginEnd="4dp"
+                        app:tint="@android:color/white" />
+
+                    <!-- Linkedin Text -->
+                    <TextView
+                        android:id="@+id/GithubView"
+                        android:layout_width="121dp"
+                        android:layout_height="wrap_content"
+                        android:text="username@hoyvoh"
+                        android:textColor="@android:color/white"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+
+                <View
+                    android:id="@+id/divider8View"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:paddingTop="10dp"
+                    android:layout_marginVertical="1dp"/>
+                <View
+                    android:id="@+id/divider4View"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/white"
+                    android:paddingTop="10dp"
+                    android:layout_marginVertical="1dp"/>
+
+
+                <!-- Education -->
+                <TextView
+                    android:id="@+id/EducationTitleView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Education"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp" />
+
+                <LinearLayout
+                    android:id="@+id/EducationView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    android:padding="0dp">
+
+                    <TextView
+                        android:id="@+id/EducationYearView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2021-2025"
+                        android:textSize="11sp"
+                        android:textColor="@android:color/white"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:id="@+id/EducationDegreeView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bachelors of Information Systems"
+                        android:textSize="14sp"
+                        android:textColor="@android:color/white"
+                        android:layout_marginBottom="4dp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/EducationCollegeView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="VNU - HCMUIT"
+                        android:textSize="11sp"
+                        android:textColor="@android:color/white"
+                        android:layout_marginBottom="8dp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider9View"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:paddingTop="10dp"
+                    android:layout_marginVertical="1dp"/>
+                <View
+                    android:id="@+id/divider5View"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/white"
+                    android:paddingTop="10dp"
+                    android:layout_marginVertical="1dp"/>
+
+                <!-- Expertise -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expertise"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/ExpertiseView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="• Machine Learning and Deep Learning\n• Proficient in Python/JavaScripts\n• Django REST Framework, FastAPI, Torch, Tensorflow\n• Git/Docker/AWS"
+                    android:textColor="@android:color/white"
+                    android:textSize="11sp"
+                    android:layout_marginBottom="8dp" />
+
+                <View
+                    android:id="@+id/divider6View"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/white"
+                    android:paddingTop="10dp"
+                    android:layout_marginVertical="1dp"/>
+
+                <!-- Language -->
+                <TextView
+                    android:id="@+id/LanguageHeaderView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Language"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:text="English C1 Level\nGerman B2 level"
+                    android:textColor="@android:color/white"
+                    android:layout_marginBottom="8dp" />
+
+            </LinearLayout>
+
+            <!-- Right Column (Dark Background) -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.1"
+                android:orientation="vertical"
+                android:padding="14dp"
+                android:background="@android:color/white"> <!-- Dark Shade Background -->
+
+                <!-- Name & Title -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hồ Ngọc Tường Vy"
+                    android:textSize="23sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AI Engineer"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/darker_gray"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Experience Section -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Experience"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:layout_marginBottom="8dp"/>
+
+                <!-- Experience Items -->
+
+                <!-- Experience Item 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:text="HASAKI CUSTOMER SERVICE CHATBOT @ WTM2024 - 2nd Place - 10/2024 – 11/2024"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Repositories: hasaki-chatbot"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Technologies: FastAPI, Streamlit, Pinecone, MongoDB, OpenAI, BeautifulSoup"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Core Features:"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="• Data Handling: Processed Hasaki's e-commerce data; used Pinecone for embeddings and MongoDB for metadata.\n • Dynamic Query Handling: Enabled dynamic queries on real-time changes of the actual website.\n• Customer Support: Provided policy details, web navigation, and domain-specific assistance."
+                        android:textSize="11sp"/>
+                </LinearLayout>
+
+                <!-- Experience Item 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:text="SUPPLY CHAIN ROUTE OPTIMIZATION SERVICE - 10/2024 – 11/2024"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text="Link: scm-route-optimization"
+                        android:textSize="11sp"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text="Technology: FastAPI, Docker, Torch, BeautifulSoup"
+                        android:textSize="11sp"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text="Description:"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text="Developed a supply chain optimization service addressing a Vehicle Routing Problem (VRP) variant.\n• Data: Collected and processed information from 116 rice mills, vehicle catalogs, and parking areas to build a route network.\n• Objective: Minimized costs based on trucking expenses in Vietnam.\n• Algorithms: Linear Programming, Genetic Algorithms, and Graph Convolutional Networks (GCN)."
+                        android:textSize="11sp"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
