@@ -13,9 +13,11 @@ class GameEngine {
     private var gameState: Int = 0 // 0 -> not started, 1 -> playing, 2 -> game over
     private val paint = Paint()
     private val obstacles: MutableList<Obstacle> = mutableListOf()
-    private var obstacleTimer: Long = 0
-    private val obstacleInterval: Long = 2000 // Tạo chướng ngại vật mỗi 2 giây
     private val maxObstacles: Int = 5 // Giới hạn số lượng chướng ngại vật tối đa trên màn hình
+
+    // Thay đổi ở đây
+    private var distanceSinceLastObstacle: Int = 0
+    private val baseDistanceThreshold: Int = 500 // pixel - có thể chỉnh tăng giảm cho phù hợp
 
     init {
         // Tạo chướng ngại vật ban đầu
@@ -23,23 +25,37 @@ class GameEngine {
     }
 
     fun updateAndDrawableBackgroundImage(canvas: Canvas) {
+        val bgBitmap = bitmapBank.getBackgroundGame()
+        val bgWidth = bgBitmap.width
+
+        // Di chuyển nền
         backgroundImage.setX(backgroundImage.getX() - backgroundImage.getVelocity())
 
-        if (backgroundImage.getX() < -bitmapBank.getBackgroundWidth()) {
+        // Nếu nền đầu ra khỏi màn hình thì reset lại
+        if (backgroundImage.getX() <= -bgWidth) {
             backgroundImage.setX(0)
         }
 
-        canvas.drawBitmap(
-            bitmapBank.getBackgroundGame(),
-            backgroundImage.getX().toFloat(),
-            backgroundImage.getY().toFloat(),
-            null
+        // Vẽ 2 tấm nền ghép nhau để tạo cảm giác cuộn vô hạn
+        val destRect1 = Rect(
+            backgroundImage.getX(), 0,
+            backgroundImage.getX() + bgWidth,
+            AppConstants.SCREEN_HEIGHT
         )
+        val destRect2 = Rect(
+            backgroundImage.getX() + bgWidth, 0,
+            backgroundImage.getX() + 2 * bgWidth,
+            AppConstants.SCREEN_HEIGHT
+        )
+
+        canvas.drawBitmap(bgBitmap, null, destRect1, null)
+        canvas.drawBitmap(bgBitmap, null, destRect2, null)
 
         // Cập nhật và vẽ chướng ngại vật
         updateObstacles()
-        bitmapBank.drawObstacles(canvas, obstacles) // Gọi phương thức vẽ từ BitmapBank
+        bitmapBank.drawObstacles(canvas, obstacles)
     }
+
 
     fun updateAndDrawBird(canvas: Canvas) {
         if (gameState == 1) { // Kiểm tra nếu trò chơi đang chơi
@@ -94,10 +110,17 @@ class GameEngine {
             obstacle.update()
         }
 
-        // Tạo chướng ngại vật mới theo khoảng thời gian nhất định
-        if (System.currentTimeMillis() - obstacleTimer > obstacleInterval && obstacles.size < maxObstacles) {
+        // Tăng khoảng cách đã cuộn
+        distanceSinceLastObstacle += backgroundImage.getVelocity()
+
+        // Scale ngưỡng tạo obstacle theo tốc độ chim
+        val speedFactor = Math.max(1f, bird.getVelocity() / 10f)
+        val dynamicThreshold = (baseDistanceThreshold * speedFactor).toInt()
+
+        // Tạo chướng ngại vật mới khi đủ khoảng cách và số lượng chưa vượt giới hạn
+        if (distanceSinceLastObstacle > dynamicThreshold && obstacles.size < maxObstacles) {
             createObstacle()
-            obstacleTimer = System.currentTimeMillis()
+            distanceSinceLastObstacle = 0
         }
 
         // Xóa các chướng ngại vật đã ra ngoài màn hình
@@ -107,7 +130,7 @@ class GameEngine {
     private fun createObstacle() {
         val newObstacle = Obstacle(
             bitmapBank.getPipeBitmap(), // Lấy bitmap từ BitmapBank
-            150, // Khoảng cách giữa các chướng ngại vật
+            250, // Khoảng cách giữa các chướng ngại vật
             AppConstants.SCREEN_WIDTH,
             AppConstants.SCREEN_HEIGHT
         )
@@ -141,5 +164,6 @@ class GameEngine {
         backgroundImage.setX(0) // Đặt lại vị trí hình nền
         gameState = 0 // Đặt lại trạng thái trò chơi
         obstacles.clear() // Xóa chướng ngại vật
+        distanceSinceLastObstacle = 0 // Reset khoảng cách cuộn
     }
 }

@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Matrix
+import android.graphics.Rect
 
 class BitmapBank(resources: Resources) {
 
@@ -50,12 +51,33 @@ class BitmapBank(resources: Resources) {
     }
 
     fun drawObstacles(canvas: Canvas, obstacles: List<Obstacle>) {
+        val scaleFactor = 2f
+
         for (obstacle in obstacles) {
-            // Vẽ chướng ngại vật (cả hai ống)
-            canvas.drawBitmap(pipeBitmap, obstacle.getX(), obstacle.gapPosition - pipeBitmap.height.toFloat(), null) // Ống trên
-            canvas.drawBitmap(pipeFlippedBitmap, obstacle.getX(), obstacle.gapPosition + obstacle.gap.toFloat(), null) // Ống dưới
+            val scaledWidth = (pipeBitmap.width * scaleFactor).toInt()
+            val scaledHeight = (pipeBitmap.height * scaleFactor).toInt()
+
+            // Vẽ ống trên
+            val topRect: Rect = Rect(
+                obstacle.getX().toInt(),
+                obstacle.gapPosition - scaledHeight,
+                (obstacle.getX() + scaledWidth).toInt(),
+                obstacle.gapPosition
+            )
+            canvas.drawBitmap(pipeBitmap, null, topRect, null)
+
+            // Vẽ ống dưới
+            val bottomRect: Rect = Rect(
+                obstacle.getX().toInt(),
+                obstacle.gapPosition + obstacle.gap,
+                (obstacle.getX() + scaledWidth).toInt(),
+                obstacle.gapPosition + obstacle.gap + scaledHeight
+            )
+            canvas.drawBitmap(pipeFlippedBitmap, null, bottomRect, null)
         }
     }
+
+
 
     fun drawGameOver(canvas: Canvas) {
 
